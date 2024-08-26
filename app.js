@@ -24,7 +24,18 @@ app.use('/api/users', userRoutes);
 app.use('/api/drivers', driverRoutes);
 app.use('/api/trucks', truckRoutes); // Add this line
 app.use('/api/payments', paymentRoutes);
-
+app.get('/', (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <title>Welcome</title>
+            </head>
+            <body>
+                <h1>Welcome to our Fuel Management System!</h1>
+            </body>
+        </html>
+    `);
+});
 // Error handling middleware
 app.use(errorHandler);
 initializeDatabase();
