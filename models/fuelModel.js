@@ -1,0 +1,46 @@
+const pool = require('../config/db');
+
+// Get all fuel tokens
+const getAllFuelTokens = async () => {
+    const [rows] = await pool.query('SELECT * FROM fuels');
+    return rows;
+};
+
+// Get fuel token by ID
+const getFuelTokenById = async (id) => {
+    const [rows] = await pool.query('SELECT * FROM fuels WHERE id = ?', [id]);
+    return rows[0];
+};
+
+// Create a new fuel token
+const createFuelToken = async (fuelToken) => {
+    const [result] = await pool.query('INSERT INTO fuels SET ?', [fuelToken]);
+    return result.insertId;
+};
+
+// Update fuel token by ID
+const updateFuelToken = async (id, fuelToken) => {
+    const [result] = await pool.query('UPDATE fuels SET ? WHERE id = ?', [fuelToken, id]);
+    return result.affectedRows;
+};
+
+// Delete fuel token by ID
+const deleteFuelToken = async (id) => {
+    const [result] = await pool.query('DELETE FROM fuels WHERE id = ?', [id]);
+    return result.affectedRows;
+};
+
+// Get fuel tokens by pump ID
+const getFuelTokensByPumpId = async (pumpId) => {
+    const [rows] = await pool.query('SELECT * FROM fuels WHERE pump_id = ?', [pumpId]);
+    return rows;
+};
+
+module.exports = {
+    getAllFuelTokens,
+    getFuelTokenById,
+    createFuelToken,
+    updateFuelToken,
+    deleteFuelToken,
+    getFuelTokensByPumpId
+};
