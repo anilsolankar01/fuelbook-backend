@@ -9,7 +9,7 @@ const truckRoutes = require('./routes/truckRoutes'); // Add this line
 const errorHandler = require('./utils/errorHandler');
 const cors = require('cors');
 const paymentRoutes = require('./routes/paymentRoutes');
-
+const initializeDatabase = require('./config/initializeDatabase');
 
 // Load environment variables from .env file
 dotenv.config();
