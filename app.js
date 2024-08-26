@@ -27,7 +27,7 @@ app.use('/api/payments', paymentRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
-
+initializeDatabase();
 // Start server
 const PORT = process.env.PORT || 5000; // Use environment variable for port
 app.listen(PORT, () => {
