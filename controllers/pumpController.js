@@ -7,6 +7,7 @@ const getAllPumps = async (req, res) => {
         const pumps = await pumpModel.getAllPumps();
         res.json(pumps);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: err.message });
     }
 };
