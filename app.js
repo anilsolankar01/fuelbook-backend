@@ -18,6 +18,7 @@ dotenv.config();
 app.use(express.json()); // To parse JSON bodies
 app.use(cors());
 // Routes
+initializeDatabase();
 app.use('/api/fuels', fuelRoutes);
 app.use('/api/pumps', pumpRoutes);
 app.use('/api/users', userRoutes);
