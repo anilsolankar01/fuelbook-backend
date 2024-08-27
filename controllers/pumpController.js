@@ -2,6 +2,7 @@ const pumpModel = require('../models/pumpModel');
 
 // Get all pumps
 const getAllPumps = async (req, res) => {
+    console.log('hi .. welcome ... to pumps list ');
     try {
         const pumps = await pumpModel.getAllPumps();
         res.json(pumps);

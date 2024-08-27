@@ -25,6 +25,7 @@ app.use('/api/drivers', driverRoutes);
 app.use('/api/trucks', truckRoutes); // Add this line
 app.use('/api/payments', paymentRoutes);
 app.get('/', (req, res) => {
+    console.log('hi .. welcome ...');
     res.send(`
         <html>
             <head>
