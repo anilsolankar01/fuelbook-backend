@@ -37,7 +37,20 @@ app.get('/', (req, res) => {
         </html>
     `);
 });
-app.get('/api/fuel', pumpRoutes);
+app.get('/api/fuel', (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <title>Welcome</title>
+            </head>
+            <body>
+                <h1>Welcome to API!</h1>
+            </body>
+        </html>
+    `);
+});
+app.get('/api/fuel2',pumpRoutes);
+
 // Error handling middleware
 app.use(errorHandler);
 
