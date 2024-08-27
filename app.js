@@ -49,7 +49,7 @@ app.get('/api/fuel', (req, res) => {
         </html>
     `);
 });
-app.get('/api/fuel2',pumpRoutes);
+app.use('/api/fuel2',pumpRoutes);
 
 // Error handling middleware
 app.use(errorHandler);

@@ -3,7 +3,12 @@ const router = express.Router();
 const pumpController = require('../controllers/pumpController');
 
 // Routes for pumps
-router.get('/', pumpController.getAllPumps);
+//router.get('/', pumpController.getAllPumps);
+// Routes for pumps
+router.get('/', (req, res) => {
+    console.log('GET /api/fuel2/');
+    pumpController.getAllPumps(req, res);
+});
 // Route to get pump details by ID
 router.get('/:id', pumpController.getPumpById);
 
