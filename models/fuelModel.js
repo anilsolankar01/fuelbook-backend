@@ -11,6 +11,17 @@ const getFuelTokenById = async (id) => {
     const [rows] = await pool.query('SELECT * FROM fuels WHERE id = ?', [id]);
     return rows[0];
 };
+// Get fuel token by token ID
+const getFuelTokenByTokenId = async (token_id) => {
+    const [rows] = await pool.query('SELECT * FROM fuels WHERE token_id = ?', [token_id]);
+    return rows[0];
+};
+
+// Update fuel_dispensed by token_id
+const updateFuelDispensedByTokenId = async (token_id) => {
+    const [result] = await pool.query('UPDATE fuels SET fuel_dispensed = TRUE WHERE token_id = ?', [token_id]);
+    return result.affectedRows;
+};
 
 // Create a new fuel token
 const createFuelToken = async (fuelToken) => {
@@ -42,5 +53,7 @@ module.exports = {
     createFuelToken,
     updateFuelToken,
     deleteFuelToken,
-    getFuelTokensByPumpId
+    getFuelTokensByPumpId,
+    getFuelTokenByTokenId,
+    updateFuelDispensedByTokenId
 };

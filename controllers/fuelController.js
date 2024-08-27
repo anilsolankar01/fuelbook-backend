@@ -25,6 +25,42 @@ const getFuelTokenById = async (req, res) => {
     }
 };
 
+// Get fuel token by token ID
+const getFuelTokenByTokenId = async (req, res) => {
+    const { token_id } = req.params; // Extract token_id from request parameters
+    console.log(token_id);
+    try {
+        const fuelToken = await fuelModel.getFuelTokenByTokenId(token_id);
+
+        if (!fuelToken) {
+            return res.status(404).json({ error: 'Fuel token not found' });
+        }
+
+        res.json(fuelToken);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch fuel token' });
+    }
+};
+
+// Update fuel_dispensed by token_id
+const updateFuelDispensed = async (req, res) => {
+    const { token_id } = req.params;
+
+    try {
+        const affectedRows = await fuelModel.updateFuelDispensedByTokenId(token_id);
+
+        if (affectedRows === 0) {
+            return res.status(404).json({ error: 'Fuel token not found or already dispensed' });
+        }
+
+        res.json({ message: 'Fuel dispensed status updated successfully' });
+    } catch (error) {
+        console.error('Error updating fuel dispensed status:', error);
+        res.status(500).json({ error: 'Failed to update fuel dispensed status' });
+    }
+};
+
+
 const getFuelTokensByPumpId = async (req, res) => {
     const { pumpId } = req.params;
     try {
@@ -87,5 +123,7 @@ module.exports = {
     createFuelToken,
     updateFuelToken,
     deleteFuelToken,
-    getFuelTokensByPumpId
+    getFuelTokensByPumpId,
+    getFuelTokenByTokenId,
+    updateFuelDispensed
 };
